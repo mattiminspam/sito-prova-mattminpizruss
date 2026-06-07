@@ -1,356 +1,473 @@
+/* ===================================================
+   FRIGGITORIA / STREET FOOD STYLE 2026
+=================================================== */
+
+:root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+
+    --primary: #ff6b00;
+    --primary-light: #ff8a33;
+
+    --text: #ffffff;
+    --text-muted: #bdbdbd;
+
+    --gold: #ffd700;
+
+    --radius: 24px;
+
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    margin: 0;
-    font-family: Arial;
-    color: white;
+    font-family: Inter, system-ui, sans-serif;
+    color: var(--text);
+
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+
+    background: var(--bg);
+
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-
-/* SFONDO IMMAGINE */
+/* SFONDO */
 
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
 
-    background: url('images/fritti.jpg') no-repeat center center;
-    background-size: cover; /* ✅ OCCUPA TUTTO LO SCHERMO */
+    background:
+        linear-gradient(
+            rgba(0,0,0,.75),
+            rgba(0,0,0,.85)
+        ),
+        url("images/fritti.jpg") center center / cover no-repeat;
 
-    z-index: -2;
-}
-
-
-
-
-/* OVERLAY SCURO */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* ← cambia qui */
     z-index: -1;
 }
 
+.overlay {
+    display: none;
+}
 
 /* HEADER */
+
 header {
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
+}
+
+.logo {
+    width: 150px;
+    max-width: 80%;
+    margin-bottom: 20px;
+
+    filter: drop-shadow(0 0 20px rgba(255,107,0,.3));
+}
+
+/* MENU */
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: 10px 15px;
 }
 
 nav button {
-    margin: 5px;
-    padding: 10px 15px;
     border: none;
-    border-radius: 8px;
-    background: #c0392b;
+    background: var(--surface);
+
     color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+
     cursor: pointer;
+
+    transition: .25s;
+}
+
+nav button:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
 }
 
 /* SEZIONI */
+
 .sezione {
     display: none;
-    padding: 40px;
-    text-align: center;
-    animation: fade 0.4s;
+    padding: 25px 15px;
+    animation: fade .4s ease;
 }
 
 .attiva {
     display: block;
 }
+
+/* TITOLI */
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary);
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* CARD */
+
+.card,
+.card-grande,
+.google-review-box {
+    background: var(--surface);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.card-grande {
+    max-width: 900px;
+    margin: auto;
+}
+
 /* STORIA */
 
 .storia-box {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    align-items: center;
+}
+
+@media (min-width: 900px) {
+    .storia-box {
+        flex-direction: row;
+        justify-content: center;
+    }
 }
 
 .storia-testo {
-    max-width: 500px;
+    max-width: 650px;
     text-align: left;
-    line-height: 1.6;
 }
 
 .foto-storia {
-    width: 500px;
-    max-width: 90%;
-    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+
+    border-radius: var(--radius);
+
     object-fit: cover;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+
+    box-shadow: var(--shadow);
 }
 
-/* MENU GRID */
-.grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+/* FOTO HOME */
 
-/* CARD */
-.card {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 12px;
-    width: 250px;
-}
+.foto-home {
+    display: block;
 
-.card-grande {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 12px;
-    width: 500px;
-    box-sizing: border-box;
-}
+    width: 100%;
+    max-width: 1200px;
 
-/* SOCIAL */
-.social a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-}
+    margin: 30px auto 0;
 
-.insta { background: #e1306c; }
-.fb { background: #1877f2; }
-.wa { background: #25d366; }
+    aspect-ratio: 16 / 9;
 
-/* MAPPA */
-iframe {
-    width: 80%;
-    height: 300px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
+    object-fit: cover;
 
-/* FOOTER */
+    border-radius: 30px;
 
-footer {
-    margin-top: auto; /* ✅ SPINGE IL FOOTER GIÙ */
-    text-align: center;
-    padding: 15px;
-}
-
-
-/* ANIMAZIONE */
-@keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-
-.logo {
-    width: 200px;
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.7));
+    box-shadow: var(--shadow);
 }
 
 /* PRODOTTI */
 
 .prodotto {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+
     gap: 15px;
-    margin: 15px 0;
+
+    padding: 15px;
+
+    background: var(--surface-2);
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
 }
 
-
-/* FOTO */
 .prodotto img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
+    width: 90px;
+    height: 90px;
+
+    border-radius: 18px;
+
     object-fit: cover;
-    flex-shrink: 0;
 }
 
-
-
-/* BLOCCO TESTO */
 .prodotto div {
-    flex: 1;
-    text-align: left; /* ✅ SEMPRE A SINISTRA */
+    width: 100%;
 }
 
-
-
-/* NOME + PREZZO */
 .prodotto h4 {
-    margin: 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+
+    gap: 10px;
 }
 
-
-/* PREZZO (SPINTO A DESTRA) */
 .prodotto h4 span {
-    margin-left: auto; /* ✅ QUESTA È LA CHIAVE */
-    min-width: 70px;
-    text-align: right;
+    color: var(--primary);
+    font-weight: 800;
 }
 
-
-/* INGREDIENTI (SOTTO, ALLINEATI A SINISTRA) */
 .prodotto p {
-    margin: 3px 0 0;
-    font-size: 13px;
-    opacity: 0.8;
-    text-align: left; /* ✅ FORZATO */
+    margin-top: 6px;
+
+    color: var(--text-muted);
+
+    font-size: .95rem;
 }
 
-/* VERSIONE SENZA FOTO (TEGLIA) */
 .prodotto.semplice {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
+    display: block;
 }
 
-/* nome */
 .prodotto.semplice h4 {
     display: flex;
-    width: 100%;
-    margin: 0;
+    justify-content: space-between;
 }
-
-/* prezzo a destra */
-.prodotto.semplice span {
-    margin-left: auto; /* ✅ allineamento perfetto */
-    min-width: 70px;
-    text-align: right;
-}
-
 
 /* NOTE */
+
 .note {
-    font-size: 13px;
-    opacity: 0.8;
+    margin-top: 20px;
+    font-size: .9rem;
+    color: var(--text-muted);
 }
 
-/* EXTRA INFO */
 .extra {
     margin-top: 20px;
-    font-size: 14px;
     text-align: center;
+    color: var(--text-muted);
 }
 
 /* PREMI */
 
-.premio {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
+.premio-container {
+    display: grid;
+    gap: 20px;
 }
 
-.premio-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 20px;
-    flex-wrap: wrap;
+@media (min-width: 768px) {
+    .premio-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.premio {
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #221600,
+        #3d2500
+    );
+
+    border-radius: var(--radius);
+
+    padding: 25px;
 }
 
 .premio-logo {
-    display: block;
-    margin: 0 auto 15px;
-    width: 250px;
+    width: 220px;
     max-width: 80%;
-    height: auto;
+
+    display: block;
+
+    margin: 0 auto 15px;
 }
 
-
 .premio h3 {
-    margin-bottom: 10px;
-    color: #ffd700;
+    color: var(--gold);
 }
 
 .descrizione {
-    font-size: 14px;
-    line-height: 1.5;
-    opacity: 0.9;
-    margin-bottom: 10px;
-}
-
-.evidenza {
-    font-weight: bold;
-    color: white;
+    margin-top: 10px;
+    line-height: 1.7;
 }
 
 .claim {
     margin-top: 15px;
-    font-size: 16px;
+
+    color: var(--gold);
+
     font-weight: bold;
-    color: #ffd700;
+}
+
+.evidenza {
+    color: white;
+    font-weight: bold;
 }
 
 .foto-premio {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
+    border-radius: 18px;
 }
 
-.foto-home {
-    display: block;
-    margin: 30px auto 0;
-    width: 100%;
-    max-width: 1000px;
-    height: 450px;
-    object-fit: cover;
+/* SOCIAL */
 
-    border-radius: 15px;
+.social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.social a {
+    text-decoration: none;
+
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 18px;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.social a:hover {
+    transform: translateY(-2px);
+}
+
+.insta {
+    background: #e1306c;
+}
+
+.fb {
+    background: #1877f2;
+}
+
+.wa {
+    background: #25d366;
+}
+
+/* MAPPA */
+
+iframe {
+    width: 100%;
+    height: 400px;
+
+    border: none;
+
+    border-radius: 24px;
+
+    margin-top: 20px;
 }
 
 /* RECENSIONI */
 
 .google-review-box {
-    max-width: 600px;
+    max-width: 700px;
     margin: 40px auto 0;
-    padding: 25px;
-
-    background: rgba(255,255,255,0.12);
-    border-radius: 12px;
 
     text-align: center;
 }
 
 .google-review-box h3 {
-    margin-top: 0;
-    color: #ffd700;
-}
-
-.google-review-box p {
-    margin: 15px 0;
-    line-height: 1.5;
+    color: var(--gold);
+    margin-bottom: 15px;
 }
 
 .btn-recensione {
     display: inline-block;
-    margin-top: 10px;
-    padding: 12px 20px;
 
-    background: #4285F4;
+    margin-top: 15px;
+
+    padding: 14px 24px;
+
+    background: var(--primary);
+
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
 
-    font-weight: bold;
-    transition: 0.3s;
+    text-decoration: none;
+
+    border-radius: 18px;
+
+    font-weight: 700;
+
+    transition: .25s;
 }
 
 .btn-recensione:hover {
-    background: #3367d6;
+    background: var(--primary-light);
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: auto;
+
+    text-align: center;
+
+    padding: 25px 15px;
+
+    color: var(--text-muted);
+}
+
+/* ANIMAZIONI */
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
