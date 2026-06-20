@@ -360,3 +360,32 @@ footer{
         line-height:1.2;
     }
 }
+
+
+
+
+
+.foto-premio {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    border-radius: var(--radius);
+}
+
+
+
+@media (max-width: 768px) {
+
+    @media (max-width: 768px) {
+        .foto-premio {
+            max-height: 220px;
+        }
+    }
+    
+
+    .card-grande {
+        padding: 12px;
+   
+    }
+}
