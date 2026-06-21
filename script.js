@@ -49,3 +49,29 @@ buttons.forEach(btn => {
 
     });
 });
+
+const galleryImages = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+// quando clicchi una foto
+galleryImages.forEach(img => {
+    img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+    });
+});
+
+// chiusura cliccando fuori
+lightbox.addEventListener("click", () => {
+    lightbox.style.display = "none";
+});
+
+
+function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("active");
+}
