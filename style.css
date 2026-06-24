@@ -133,6 +133,15 @@ header{
 }
 
 
+.grid{
+
+    display:grid;
+
+    gap:18px;
+
+    margin-top:30px;
+
+}
 
 /* =========================
    HAMBURGER
@@ -1184,40 +1193,37 @@ footer small{
 
 
 
+/* =========================
+   GALLERY STORIES
+========================= */
+
+
+.story-gallery{
+
+    position:relative;
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+
 .instagram-feed{
 
 
     display:flex;
 
 
-    gap:16px;
+    overflow:hidden;
 
 
-
-    overflow-x:auto;
-
-
-    overflow-y:hidden;
+    scroll-behavior:smooth;
 
 
+    border-radius:28px;
 
-    padding:10px 5px 20px;
-
-
-
-    scroll-snap-type:x mandatory;
-
-
-
-    scrollbar-width:none;
-
-}
-
-
-
-.instagram-feed::-webkit-scrollbar{
-
-    display:none;
 
 }
 
@@ -1227,46 +1233,25 @@ footer small{
 .instagram-feed img{
 
 
-    flex:0 0 280px;
+    min-width:100%;
 
 
+    width:100%;
 
-    width:280px;
+
+    height:70vh;
 
 
-    height:420px;
-
+    max-height:650px;
 
 
     object-fit:cover;
 
 
-
-    border-radius:24px;
-
+    border-radius:28px;
 
 
-    cursor:pointer;
-
-
-
-    scroll-snap-align:center;
-
-
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.25);
-
-}
-
-
-
-
-
-.instagram-feed img:hover{
-
-
-    transform:translateY(-8px);
+    display:block;
 
 
 }
@@ -1274,9 +1259,7 @@ footer small{
 
 
 
-
-
-.feed-nav{
+.story-btn{
 
 
     position:absolute;
@@ -1289,39 +1272,68 @@ footer small{
 
 
 
-    width:50px;
+    width:45px;
 
 
-    height:50px;
+    height:80px;
 
 
 
     border:none;
 
 
-    border-radius:50%;
-
-
-
-    background:
-    rgba(0,0,0,.25);
-
+    background:transparent;
 
 
     color:white;
 
 
 
-    font-size:1.4rem;
+    font-size:40px;
+
+
+    z-index:10;
 
 
     cursor:pointer;
 
+}
 
 
-    z-index:20;
+
+.story-btn.prev{
+
+    left:0;
 
 }
+
+
+.story-btn.next{
+
+    right:0;
+
+}
+
+
+
+
+@media(max-width:768px){
+
+
+    .instagram-feed img{
+
+
+        height:65vh;
+
+
+        border-radius:22px;
+
+    }
+
+
+}
+
+
 
 
 
