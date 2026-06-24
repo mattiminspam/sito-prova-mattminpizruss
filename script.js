@@ -4,31 +4,35 @@
 
 function mostraSezione(id) {
 
-    const sezioni = document.querySelectorAll('.sezione');
+    const sezioni = document.querySelectorAll(".sezione");
 
     sezioni.forEach(sezione => {
-        sezione.classList.remove('attiva');
+        sezione.classList.remove("attiva");
     });
 
     const target = document.getElementById(id);
 
-    if (target) {
-        target.classList.add('attiva');
+    if(target){
+        target.classList.add("attiva");
     }
 
     window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+        top:0,
+        behavior:"smooth"
     });
 }
 
+
 /* ===================================================
-   UX MOBILE
+   AVVIO MOBILE
 =================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    window.scrollTo(0, 0);
+
+    window.scrollTo(0,0);
+
 });
+
 
 /* ===================================================
    NAV ACTIVE STATE
@@ -37,52 +41,125 @@ document.addEventListener("DOMContentLoaded", () => {
 const buttons = document.querySelectorAll("nav button");
 
 buttons.forEach(btn => {
+
     btn.addEventListener("click", () => {
 
-        buttons.forEach(b => b.classList.remove("active"));
+        buttons.forEach(b =>
+            b.classList.remove("active")
+        );
 
         btn.classList.add("active");
 
     });
+
 });
 
+
 /* ===================================================
-   MENU SIDEBAR
+   SIDEBAR MENU
 =================================================== */
 
-function toggleMenu() {
+function toggleMenu(){
 
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
+
+    if(!sidebar || !overlay) return;
 
     sidebar.classList.toggle("open");
     overlay.classList.toggle("active");
 
 }
 
+
 /* ===================================================
-   LIGHTBOX (INSTAGRAM + PREMIO ZOOM)
+   LIGHTBOX
+   (Gallery + Premio)
 =================================================== */
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
-document.querySelectorAll(".instagram-feed img, .zoomable")
+
+if(lightbox && lightboxImg){
+
+    document
+    .querySelectorAll(".instagram-feed img, .zoomable")
     .forEach(img => {
+
 
         img.addEventListener("click", () => {
 
-            lightbox.style.display = "flex";
+            lightbox.style.display="flex";
+
             lightboxImg.src = img.src;
 
         });
 
+
     });
 
-// chiusura lightbox cliccando fuori
-lightbox.addEventListener("click", () => {
 
-    lightbox.style.display = "none";
-    lightboxImg.src = "";
+    lightbox.addEventListener("click", () => {
 
-});
+        lightbox.style.display="none";
+
+        lightboxImg.src="";
+
+    });
+
+}
+
+
+
+/* ===================================================
+   GALLERY STORIES STYLE
+=================================================== */
+
+function scrollFeed(direction){
+
+    const feed = document.querySelector(".instagram-feed");
+
+    if(!feed) return;
+
+
+    const img = feed.querySelector("img");
+
+    if(!img) return;
+
+
+    const step = img.offsetWidth + 16;
+
+
+    feed.scrollBy({
+
+        left: step * direction,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* ===================================================
+   CHIUSURA SIDEBAR CLICCANDO OVERLAY
+=================================================== */
+
+const overlay = document.getElementById("overlay");
+
+if(overlay){
+
+    overlay.addEventListener("click",()=>{
+
+        const sidebar =
+        document.getElementById("sidebar");
+
+
+        sidebar.classList.remove("open");
+
+        overlay.classList.remove("active");
+
+    });
+
+}
